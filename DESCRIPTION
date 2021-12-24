@@ -5,8 +5,8 @@ Version: 0.1.0
 Author: Hongda Zhang
 Maintainer: The package maintainer <zyqlxrhd@sina.cn>
 Description: The main funcion mbts segments brain MRI images into grey matter, white matter, CSF, edema, non-enhancing tumor, enhancing tumor, necrosis and hemerrage.
-License: What license is it under?
-Encoding: GPL-2 | GPL-3
+License: GPL-2 | GPL-3
+Encoding: UTF-8
 LazyData: true
 Imports: oro.nifti, stats
 RoxygenNote: 7.1.2

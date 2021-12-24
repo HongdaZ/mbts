@@ -1,3 +1,12 @@
+#' A three-stage procedure for brain tumor segmentation
+#' 
+#' \code{mbts} Analyzes T1ce, FLAIR and T2 images and segments the images 
+#' into brain tissues.
+#' 
+#' @useDynLib mbts
+#' @importFrom stats kmeans predict smooth.spline
+#' @importFrom oro.nifti readNIfTI writeNIfTI nifti
+#' @export
 # Markov random field model for brain tumor segmentation
 mbts <- function( patient, out = "SEG", infolder = "N4ITK433Z", 
                   shrink = FALSE,
