@@ -1,7 +1,9 @@
 useDynLib( mbts )
-export(mbts)
-export(segment)
-export(post)
+
+export( mbts )
+export( segment )
+export( post )
+
 #importFrom(): import selected functions (including S4 generics).
 importFrom( "oro.nifti", "readNIfTI" )
 importFrom( "oro.nifti", "writeNIfTI" )
