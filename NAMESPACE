@@ -1,6 +1,5 @@
 useDynLib( mbts )
-exportPattern("^[[:alpha:]]+")
-
+export(mbts)
 #importFrom(): import selected functions (including S4 generics).
 importFrom( "oro.nifti", "readNIfTI" )
 importFrom( "oro.nifti", "writeNIfTI" )
