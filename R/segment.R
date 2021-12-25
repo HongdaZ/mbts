@@ -1,6 +1,31 @@
+#' The Subroutine for Preprocessing and Processing
+#' 
+#' \code{segment} analyzes T1ce, FLAIR and T2 images and segments the images 
+#' into brain tissues.
+#' @author Hongda Zhang
+#' @param patient A vector of file names of FLAIR, T1, T1ce and T2 images.
+#' @param out Directory to save the intermediate and final results.
+#' @param infolder Directory which includes the multimodal images.
+#' in each dimension of 3D space.
+#' @param delta A list of values related to unary potentials for 
+#' segmenting T1ce, FLAIR and T2 images and for spliting non-enhancing 
+#' tumor and edema.
+#' @param delta_factor A factor for adjusting unary potentials. The larger the
+#' values, the smaller the resulting unary potentials.
+#' @param gamma A list of parameters for pairwise potentials. The larger the 
+#' values the stronger the spatial correlation between neighboring voxels.
+#' @param alpha,beta  Shape and scale parameter of inverse-gamma 
+#' prior of variances.
+#' @param lambda2 Prior variance of interaction parameters.
+#' @param a Shape parameter of prior distribution of mean intensity of 
+#' bright signals.
+#' @param nu2 Variance of mean intensity of distinguishable classes.
+#' @param maxit Maximum iterations to run for getting the segmentation results.
+#' @param redo Whether to redo the analysis if the intermediate results exist.
+#' @param shrink Whether to reduce the resolution of the original images.
+#' @export
 # segment the MR images 
 # beta and nu2 influenced by normalization
-
 segment <- function( patient, out = "SEG", infolder = "N4ITK433Z",
                      ## Always four numbers for delta
                      delta = 

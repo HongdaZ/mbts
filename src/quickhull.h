@@ -1,14 +1,14 @@
 #ifndef __QUICKHULL__
 #define __QUICKHULL__
 
-#include "point.hpp" // signed_area left_turn
+#include "point.h" // signed_area left_turn
 
 #include <algorithm> // std::minmax_element std::partitioning ...
 #include <cassert> // assert macro
 #include <cstdlib> // std::size_t
 #include <iterator> // std::iterator_traits
 #include <utility> // std::pair std::make_pair ...
-#include "validation.hpp" // same_multiset convex_polygon all_inside
+#include "validation.h" // same_multiset convex_polygon all_inside
 #include <vector> // std::vector
 
 namespace quickhull {

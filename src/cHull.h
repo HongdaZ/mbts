@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <cassert>
-#include "quickhull.hpp"
-#include "point.hpp"
+#include "quickhull.h"
+#include "point.h"
 
 using std::vector;
 

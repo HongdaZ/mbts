@@ -6,7 +6,7 @@
 #include <cstdlib> // std::size_t
 #include <iostream> // std streams
 #include <iterator> // std::iterator_traits
-#include "point.hpp" // left_turn right_turn
+#include "point.h" // left_turn right_turn
 #include <vector> // std::vector
 
 namespace validation {

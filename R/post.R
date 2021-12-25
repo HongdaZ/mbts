@@ -1,3 +1,54 @@
+#' Postprocess Stage of the Procedure
+#' 
+#' \code{post} postprocesses the images.
+#' @author Hongda Zhang
+#' @param patient A vector of file names of FLAIR, T1, T1ce and T2 images.
+#' @param out Directory to save the intermediate and final results.
+#' @param infolder Directory which includes the multimodal images.
+#' in each dimension of 3D space.
+#' @param delta A list of values related to unary potentials for 
+#' segmenting T1ce, FLAIR and T2 images and for spliting non-enhancing 
+#' tumor and edema.
+#' @param delta_factor A factor for adjusting unary potentials. The larger the
+#' values, the smaller the resulting unary potentials.
+#' @param gamma A list of parameters for pairwise potentials. The larger the 
+#' values the stronger the spatial correlation between neighboring voxels.
+#' @param alpha,beta  Shape and scale parameter of inverse-gamma 
+#' prior of variances.
+#' @param lambda2 Prior variance of interaction parameters.
+#' @param a Shape parameter of prior distribution of mean intensity of 
+#' bright signals.
+#' @param nu2 Variance of mean intensity of distinguishable classes.
+#' @param maxit Maximum iterations to run for getting the segmentation results.
+#' @param min_enh Minimum number of enhancing tumor voxels 
+#' a high-glioma patient has.
+#' @param min_enh_enc Minimum number of enhancing tumor voxels enclosed in
+#' tumor regions a high-glioma patient has.
+#' @param max_prop_enh_enc Maximal proportion of enhancing tumor voxels 
+#' enclosed in tumor regions.
+#' @param max_prop_enh_slice Maximal proportion of enhancing tumor voxels 
+#' enclosed in a 2D slice of tumor regions.
+#' @param min_tumor Minimal size of a tumor region.
+#' @param spread_add The maximal form factor a region to be added can have.
+#' @param spread_rm The minimal form factor a region to be removed can have.
+#' @param trim1_spread,trim1_round Form factor and roundness for trimming the 
+#' regions for the first time.
+#' @param remove2d_spread,remove2d_round 2D form factor and roundness for 
+#' removing 2D slices.
+#' @param spread_trim,round_trim Form factor and roundness for trimming the 3D 
+#' regions.
+#' @param on_flair_prop,on_flair_hull_prop,on_flair_nt_prop Proportions for 
+#' extending whole tumor regions in FLAIR images.
+#' @param last_rm_solidity,last_rm_spread,last_rm_round Solidity, form factor
+#' and roundness for removing the 3D tumor regions for the last time.
+#' @param last_trim_spread,last_trim_round Form factor and roundness for
+#' trimming the tumor regions for the last time.
+#' @param last_trim_rm_spread,last_trim_rm_round Form factor and roundness
+#' for removing tumor regions after trimming the tumor regions for the 
+#' last time.
+#' @param csf_check Whether to validate some of the necrosis 
+#' voxels are actually CSF. 
+#' @export 
 # postprocessing after segmentation
 post <- function( patient, out = "SEG", infolder = "N4ITK433Z",
           ## Always four numbers for delta
@@ -103,6 +154,7 @@ post <- function( patient, out = "SEG", infolder = "N4ITK433Z",
     post_seg$image[ post_seg$image == 5 ] <- NA_integer_
     out_t2_data <- gsub( "_flair.nii.gz", "_t2.RData", outfile )
     load( out_t2_data )
+    t2_shift <- NULL
     new_delta_t2 <- t2_shift
     new_delta_t2[ 3 ] <- new_delta_t2[ 3 ] - 0.5
   } else {

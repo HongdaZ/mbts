@@ -1,3 +1,10 @@
+#' Get Current Threshold
+#' 
+#' \code{threshold} gets current threshold for bright signals.
+#' @author Hongda Zhang
+#' @param res Matrix of estimated mean, variance and interaction coefficients.
+#' @param shift Current shift for unary potentials.
+#' @export
 ## Find threshold for tumor
 threshold <- function( res, shift ) {
   nc <- ncol( res )
