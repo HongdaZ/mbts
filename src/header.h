@@ -1,0 +1,1 @@
+#define attribute_hidden __attribute__ ((visibility ("hidden")))

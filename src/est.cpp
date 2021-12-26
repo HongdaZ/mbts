@@ -7,7 +7,7 @@
 #include "helper.h"
 #include "initParm.h"
 #include "updateBeta.h"
-#include "debug.h"
+
 #include "cmpE.h"
 #include "copyParm.h"
 #include "restoreImg.h"
