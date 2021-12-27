@@ -1,11 +1,13 @@
 #include <R.h>
 #include <Rinternals.h>
+#include "R_ext/Rdynload.h"
+#include "header.h"
 
 extern "C" SEXP changeB( SEXP label, SEXP image1, SEXP q1, SEXP image2, 
                         SEXP q2, SEXP k  );
 
-SEXP changeB( SEXP label, SEXP image1, SEXP q1, SEXP image2, SEXP q2, 
-              SEXP k  ) {
+attribute_hidden SEXP changeB( SEXP label, SEXP image1, SEXP q1, SEXP image2, 
+                               SEXP q2, SEXP k  ) {
   int *lbl = INTEGER( label );
   double *img1 = REAL( image1 );
   double *img2 = REAL( image2 );

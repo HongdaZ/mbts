@@ -1,11 +1,13 @@
 #include <R.h>
 #include <Rinternals.h>
+#include "R_ext/Rdynload.h"
+#include "header.h"
 
 #include "assignIdx.h"
 
 extern "C" SEXP initPost( SEXP t1ce_image, SEXP flair_image, 
                          SEXP t2_image, SEXP t1ce_intst );
-SEXP initPost( SEXP t1ce_image, SEXP flair_image, 
+attribute_hidden SEXP initPost( SEXP t1ce_image, SEXP flair_image, 
                SEXP t2_image, SEXP t1ce_intst ) {
   int n_nbr = 6;
   const int *ptr_t1ce = INTEGER( t1ce_image );

@@ -1,5 +1,7 @@
 #include <R.h>
 #include <Rinternals.h>
+#include "R_ext/Rdynload.h"
+#include "header.h"
 
 #include <vector>
 #include <chrono>
@@ -28,7 +30,7 @@ extern "C" SEXP pred( SEXP model, SEXP delta, SEXP gamma,
                       SEXP alpha, SEXP beta, SEXP lambda2,
                       SEXP a, SEXP b, SEXP m, SEXP nu2, SEXP maxit );
 
-SEXP pred( SEXP model, SEXP delta, SEXP gamma,
+attribute_hidden  SEXP pred( SEXP model, SEXP delta, SEXP gamma,
             SEXP alpha, SEXP beta, SEXP lambda2,
             SEXP a, SEXP b, SEXP m, SEXP nu2, SEXP maxit ) {
   SEXP info = getListElement( model, "info" );

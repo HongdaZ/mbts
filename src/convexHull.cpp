@@ -1,5 +1,7 @@
 #include <R.h>
 #include <Rinternals.h>
+#include "R_ext/Rdynload.h"
+#include "header.h"
 
 #include <vector>
 
@@ -10,7 +12,7 @@ using std::vector;
 // Find the convex hull of a set of points
 extern "C" SEXP convexHull( SEXP points );
 
-SEXP convexHull( SEXP points ) {
+attribute_hidden SEXP convexHull( SEXP points ) {
   const int *ptr_points = INTEGER( points );
   int len = length( points );
 

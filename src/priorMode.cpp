@@ -1,10 +1,13 @@
 #include <R.h>
 #include <Rinternals.h>
+#include "R_ext/Rdynload.h"
+#include "header.h"
+
 #include "helper.h"
 
 extern "C" SEXP priorMode( SEXP model );
 
-SEXP priorMode( SEXP model ) {
+attribute_hidden SEXP priorMode( SEXP model ) {
   
   SEXP info = getListElement( model, "info" );
   SEXP intst = getListElement( info, "intst" );

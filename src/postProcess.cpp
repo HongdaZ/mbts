@@ -1,5 +1,7 @@
 #include <R.h>
 #include <Rinternals.h>
+#include "R_ext/Rdynload.h"
+#include "header.h"
 
 #include <vector>
 #include <list>
@@ -59,7 +61,7 @@ extern "C" SEXP postProcess( SEXP post_data, SEXP min_enh,
                             SEXP last_trim_rm_round,
                             SEXP csf_check );
 
-SEXP postProcess( SEXP post_data, SEXP min_enh,
+attribute_hidden SEXP postProcess( SEXP post_data, SEXP min_enh,
                   SEXP min_enh_enc, SEXP max_prop_enh_enc,
                   SEXP max_prop_enh_slice,
                   SEXP min_tumor, SEXP spread_add,

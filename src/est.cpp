@@ -1,5 +1,7 @@
 #include <R.h>
 #include <Rinternals.h>
+#include "R_ext/Rdynload.h"
+#include "header.h"
 
 #include <vector>
 #include <set>
@@ -19,7 +21,7 @@ using std::set;
 extern "C" SEXP est( SEXP model, SEXP delta, SEXP gamma, 
                         SEXP alpha, SEXP beta, SEXP lambda2, 
                         SEXP m, SEXP nu2, SEXP maxit );
-SEXP est( SEXP model, SEXP delta, SEXP gamma, 
+attribute_hidden SEXP est( SEXP model, SEXP delta, SEXP gamma, 
            SEXP alpha, SEXP beta, SEXP lambda2, 
            SEXP m, SEXP nu2, SEXP maxit ) {
   SEXP info = getListElement( model, "info" );

@@ -1,11 +1,12 @@
 #include <R.h>
 #include <Rinternals.h>
-
+#include "R_ext/Rdynload.h"
+#include "header.h"
 #include "assignIdxIntst.h"
 
 extern "C" SEXP indexMat( SEXP img, SEXP label );
 
-SEXP indexMat( SEXP img, SEXP label ) {
+attribute_hidden SEXP indexMat( SEXP img, SEXP label ) {
   int n_nbr = 6;
   const double *image = REAL( img );
   const int *lbl = INTEGER( label );

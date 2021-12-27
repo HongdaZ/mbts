@@ -1,5 +1,7 @@
 #include <R.h>
 #include <Rinternals.h>
+#include "R_ext/Rdynload.h"
+#include "header.h"
 
 #include <vector>
 
@@ -11,7 +13,7 @@ using std::vector;
 // works for closed polygon
 extern "C" SEXP inSide( SEXP p, SEXP poly );
 
-SEXP inSide( SEXP p, SEXP poly ) {
+attribute_hidden SEXP inSide( SEXP p, SEXP poly ) {
   const int *ptr_p = INTEGER( p );
   int len_point = length( p );
 

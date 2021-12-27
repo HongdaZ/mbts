@@ -1,9 +1,11 @@
 #include <R.h>
 #include <Rinternals.h>
+#include "R_ext/Rdynload.h"
+#include "header.h"
 
 extern "C" SEXP changeD( SEXP old, SEXP a, SEXP b );
 
-SEXP changeD( SEXP old, SEXP a, SEXP b ) {
+attribute_hidden SEXP changeD( SEXP old, SEXP a, SEXP b ) {
   int *lbl = INTEGER( old );
   int a_ = INTEGER( a )[ 0 ];
   int b_ = INTEGER( b )[ 0 ];
