@@ -40,7 +40,7 @@ attribute_hidden  SEXP estF( SEXP model, SEXP delta, SEXP gamma,
            SEXP m, SEXP nu2, SEXP maxit ) {
   SEXP info = getListElement( model, "info" );
   SEXP seg = getListElement( model, "seg" );
-  SEXP dim_ = getListElement( model, "dim" );
+  SEXP dim_ = getListElement( info, "dim" );
   
   const int *dim__ = INTEGER( dim_ );
   const int *old_seg = INTEGER( seg );
