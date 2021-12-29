@@ -52,9 +52,9 @@ mbts(
 \arguments{
 \item{patient}{A vector of file names of FLAIR, T1, T1ce and T2 images.}
 
-\item{out}{Directory to save the intermediate and final results.}
+\item{out}{The folder to save the intermediate and final results.}
 
-\item{infolder}{Directory which includes the multimodal images.}
+\item{infolder}{The folder which includes the multimodal images.}
 
 \item{shrink}{Whether to shrink the original image by a factor of 2
 in each dimension of 3D space.}

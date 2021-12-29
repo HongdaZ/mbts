@@ -1,10 +1,10 @@
-#' Postprocess Stage of the Procedure
+#' Postprocessing Stage of the Procedure
 #' 
 #' \code{post} postprocesses the images.
 #' @author Hongda Zhang
 #' @param patient A vector of file names of FLAIR, T1, T1ce and T2 images.
-#' @param out Directory to save the intermediate and final results.
-#' @param infolder Directory which includes the multimodal images.
+#' @param out The folder to save the intermediate and final results.
+#' @param infolder The folder which includes the multimodal images.
 #' in each dimension of 3D space.
 #' @param delta A list of values related to unary potentials for 
 #' segmenting T1ce, FLAIR and T2 images and for spliting non-enhancing 

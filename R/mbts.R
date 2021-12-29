@@ -7,8 +7,8 @@
 #' @importFrom stats kmeans predict smooth.spline quantile
 #' @importFrom oro.nifti readNIfTI writeNIfTI nifti
 #' @param patient A vector of file names of FLAIR, T1, T1ce and T2 images.
-#' @param out Directory to save the intermediate and final results.
-#' @param  infolder Directory which includes the multimodal images.
+#' @param out The folder to save the intermediate and final results.
+#' @param  infolder The folder which includes the multimodal images.
 #' @param shrink Whether to shrink the original image by a factor of 2
 #' in each dimension of 3D space.
 #' @param delta A list of values related to unary potentials for 

@@ -29,9 +29,9 @@ segment(
 \arguments{
 \item{patient}{A vector of file names of FLAIR, T1, T1ce and T2 images.}
 
-\item{out}{Directory to save the intermediate and final results.}
+\item{out}{The folder to save the intermediate and final results.}
 
-\item{infolder}{Directory which includes the multimodal images.
+\item{infolder}{The folder which includes the multimodal images.
 in each dimension of 3D space.}
 
 \item{delta}{A list of values related to unary potentials for 
