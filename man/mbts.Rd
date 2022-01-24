@@ -22,7 +22,7 @@ mbts(
   a = 2,
   nu2 = list(t1ce = rep(0.25, 3), flair = rep(0.25, 3), t2 = c(0.25, 0.25), fthr =
     rep(0.25, 2)),
-  maxit = list(t1ce = 10L, flair = 1L, t2 = 1L, fthr = 40L),
+  maxit = list(t1ce = 40L, flair = 40L, t2 = 40L, fthr = 40L),
   min_enh = 500L,
   min_enh_enc = 2000L,
   max_prop_enh_enc = 0.1,

@@ -21,7 +21,7 @@ segment(
   a = 2,
   nu2 = list(t1ce = rep(0.25, 3), flair = rep(0.25, 3), t2 = c(0.25, 0.25), fthr =
     rep(0.25, 2)),
-  maxit = list(t1ce = 10L, flair = 1L, t2 = 1L, fthr = 40L),
+  maxit = list(t1ce = 40L, flair = 40L, t2 = 40L, fthr = 40L),
   redo = TRUE,
   shrink = FALSE
 )
@@ -31,8 +31,7 @@ segment(
 
 \item{out}{The folder to save the intermediate and final results.}
 
-\item{infolder}{The folder which includes the multimodal images.
-in each dimension of 3D space.}
+\item{infolder}{The folder which includes the multimodal images.}
 
 \item{delta}{A list of values related to unary potentials for 
 segmenting T1ce, FLAIR and T2 images and for spliting non-enhancing 
@@ -58,7 +57,8 @@ bright signals.}
 
 \item{redo}{Whether to redo the analysis if the intermediate results exist.}
 
-\item{shrink}{Whether to reduce the resolution of the original images.}
+\item{shrink}{Whether to reduce the resolution of the original images 
+by a factor of 2 in each dimension of 3D space.}
 }
 \description{
 \code{segment} analyzes T1ce, FLAIR and T2 images and segments the images 

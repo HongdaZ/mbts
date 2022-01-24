@@ -6,7 +6,6 @@
 #' @param patient A vector of file names of FLAIR, T1, T1ce and T2 images.
 #' @param out The folder to save the intermediate and final results.
 #' @param infolder The folder which includes the multimodal images.
-#' in each dimension of 3D space.
 #' @param delta A list of values related to unary potentials for 
 #' segmenting T1ce, FLAIR and T2 images and for spliting non-enhancing 
 #' tumor and edema.
@@ -22,7 +21,8 @@
 #' @param nu2 Variance of mean intensity of distinguishable classes.
 #' @param maxit Maximum iterations to run for getting the segmentation results.
 #' @param redo Whether to redo the analysis if the intermediate results exist.
-#' @param shrink Whether to reduce the resolution of the original images.
+#' @param shrink Whether to reduce the resolution of the original images 
+#' by a factor of 2 in each dimension of 3D space.
 #' @export
 # segment the MR images 
 # beta and nu2 influenced by normalization

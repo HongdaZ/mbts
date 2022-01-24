@@ -8,5 +8,5 @@ Description: The main funcion mbts segments brain MRI images into grey matter, w
 License: GPL-2 | GPL-3
 Encoding: UTF-8
 LazyData: true
-Imports: oro.nifti, stats
+Imports: oro.nifti, stats, SimpleITK
 RoxygenNote: 7.1.2
