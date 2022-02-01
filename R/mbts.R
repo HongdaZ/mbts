@@ -136,9 +136,16 @@ mbts <- function( patient, out = "SEG", infolder = "N4ITK433Z",
     segment( patient, out, infolder, delta, delta_factor,
              gamma, alpha,
              beta, lambda2, a, nu2, maxit, redo, shrink )
-    post( patient, out, infolder, delta, delta_factor,
-          gamma, alpha,
-          beta, lambda2, a, nu2, maxit, 
+    fthr <- NULL
+    fthr$delta <- delta$fthr
+    fthr$gamma <- gamma$fthr
+    fthr$alpha <- alpha$fthr
+    fthr$beta <- beta$fthr
+    fthr$lambda2 <- lambda2$fthr
+    fthr$nu2 <- nu2$fthr
+    fthr$maxit <- maxit$fthr
+    
+    post( patient, out, infolder, fthr, a,
           min_enh, min_enh_enc, max_prop_enh_enc, 
           max_prop_enh_slice,
           min_tumor, spread_add, spread_rm,

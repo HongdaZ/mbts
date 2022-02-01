@@ -8,20 +8,9 @@ post(
   patient,
   out = "SEG",
   infolder = "N4ITK433Z",
-  delta = list(t1ce = c(-1, 0, 8, 4), flair = c(-0.45, 0, NA_real_, 4), t2 = c(2.65, 0,
-    NA_real_, 4), fthr = c(0, 0, 4, 5)),
-  delta_factor = list(t1ce = 1.75, flair = 2.6, t2 = 4.7),
-  gamma = list(t1ce = 0.8, flair = 0.4, t2 = 0.4, fthr = 0.8),
-  alpha = list(t1ce = c(10, 10, 10, 10), flair = c(10, 10, 10, 10), t2 = c(10, 10, 10),
-    fthr = c(10, 10)),
-  beta = list(t1ce = c(1, 1, 1, 1), flair = c(1, 1, 1, 1), t2 = c(1, 1, 1), fthr = c(1,
-    1)),
-  lambda2 = list(t1ce = c(1, 1, 1, 1), flair = c(1, 1, 1, 1), t2 = c(1, 1, 1), fthr =
-    c(1, 1)),
+  fthr = list(delta = c(0, 0, 4, 5), gamma = 0.8, alpha = c(10, 10), beta = c(1, 1),
+    lambda2 = c(1, 1), nu2 = rep(0.25, 2), maxit = 40L),
   a = 2,
-  nu2 = list(t1ce = rep(0.25, 3), flair = rep(0.25, 3), t2 = c(0.25, 0.25), fthr =
-    rep(0.25, 2)),
-  maxit = list(t1ce = 40L, flair = 40L, t2 = 40L, fthr = 40L),
   min_enh = 500L,
   min_enh_enc = 2000L,
   max_prop_enh_enc = 0.1,
@@ -56,27 +45,10 @@ post(
 \item{infolder}{The folder which includes the multimodal images.
 in each dimension of 3D space.}
 
-\item{delta}{A list of values related to unary potentials for 
-segmenting T1ce, FLAIR and T2 images and for spliting non-enhancing 
-tumor and edema.}
-
-\item{delta_factor}{A factor for adjusting unary potentials. The larger the
-values, the smaller the resulting unary potentials.}
-
-\item{gamma}{A list of parameters for pairwise potentials. The larger the 
-values the stronger the spatial correlation between neighboring voxels.}
-
-\item{alpha, beta}{Shape and scale parameter of inverse-gamma 
-prior of variances.}
-
-\item{lambda2}{Prior variance of interaction parameters.}
+\item{fthr}{Parameters for further splitting ED and NET.}
 
 \item{a}{Shape parameter of prior distribution of mean intensity of 
 bright signals.}
-
-\item{nu2}{Variance of mean intensity of distinguishable classes.}
-
-\item{maxit}{Maximum iterations to run for getting the segmentation results.}
 
 \item{min_enh}{Minimum number of enhancing tumor voxels 
 a high-glioma patient has.}

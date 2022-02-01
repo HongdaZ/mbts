@@ -6,20 +6,9 @@
 #' @param out The folder to save the intermediate and final results.
 #' @param infolder The folder which includes the multimodal images.
 #' in each dimension of 3D space.
-#' @param delta A list of values related to unary potentials for 
-#' segmenting T1ce, FLAIR and T2 images and for spliting non-enhancing 
-#' tumor and edema.
-#' @param delta_factor A factor for adjusting unary potentials. The larger the
-#' values, the smaller the resulting unary potentials.
-#' @param gamma A list of parameters for pairwise potentials. The larger the 
-#' values the stronger the spatial correlation between neighboring voxels.
-#' @param alpha,beta  Shape and scale parameter of inverse-gamma 
-#' prior of variances.
-#' @param lambda2 Prior variance of interaction parameters.
+#' @param fthr Parameters for further splitting ED and NET.
 #' @param a Shape parameter of prior distribution of mean intensity of 
 #' bright signals.
-#' @param nu2 Variance of mean intensity of distinguishable classes.
-#' @param maxit Maximum iterations to run for getting the segmentation results.
 #' @param min_enh Minimum number of enhancing tumor voxels 
 #' a high-glioma patient has.
 #' @param min_enh_enc Minimum number of enhancing tumor voxels enclosed in
@@ -51,41 +40,14 @@
 #' @export 
 # postprocessing after segmentation
 post <- function( patient, out = "SEG", infolder = "N4ITK433Z",
-          ## Always four numbers for delta
-          delta = 
-            list( t1ce = c( -1, 0, 8, 4 ),
-                  flair = c( -0.45, 0, NA_real_, 4 ),
-                  t2 = c( 2.65, 0, NA_real_, 4 ),
-                  fthr = c( 0, 0, 4, 5 ) ),
-          delta_factor = 
-            list( t1ce = 1.75,
-                  flair = 2.60,
-                  t2 = 4.70 ),
-          gamma = list( t1ce = 0.8,
-                        flair = 0.4,
-                        t2 = 0.4,
-                        fthr = 0.8 ),
-          ## #of healthy tissue types controlled by alpha
-          alpha = list( t1ce = c( 10, 10, 10, 10 ),
-                        flair = c( 10, 10, 10, 10 ),
-                        t2 = c( 10, 10, 10 ),
-                        fthr = c( 10, 10 ) ),
-          beta = list( t1ce = c( 1, 1, 1, 1 ),
-                       flair = c( 1, 1, 1, 1 ),
-                       t2 = c( 1, 1, 1 ),
-                       fthr = c( 1, 1 ) ),
-          lambda2 = list( t1ce = c( 1, 1, 1, 1 ),
-                          flair = c( 1, 1, 1, 1 ),
-                          t2 = c( 1, 1, 1 ),
-                          fthr = c( 1, 1 ) ),
+          fthr = list( delta = c( 0, 0, 4, 5 ),
+                       gamma = 0.8,
+                       alpha = c( 10, 10 ),
+                       beta = c( 1, 1 ),
+                       lambda2 = c( 1, 1 ),
+                       nu2 = rep( .25, 2 ),
+                       maxit = 40L ),
           a = 2,
-          nu2 = list( t1ce = rep( .25, 3 ),
-                      flair = rep( .25, 3 ),
-                      t2 = c( .25, .25 ),
-                      fthr = rep( .25, 2 ) ),
-          maxit = 
-            list( t1ce = 40L, flair = 40L,
-                  t2 = 40L, fthr = 40L ),
           min_enh = 500L,
           min_enh_enc = 2000L,
           max_prop_enh_enc = .1,
@@ -179,16 +141,16 @@ post <- function( patient, out = "SEG", infolder = "N4ITK433Z",
           m <- further_data$m
           further_model <-initFther( further_data$label, 
                                      further_data$intst )
-          further_seg <- est( further_model, delta$fthr[ 1 : 2 ], 
-                              gamma$fthr[ 1 : 2 ],
-                              alpha$fthr[ 1 : 2 ], 
-                              beta$fthr[ 1 : 2  ], 
-                              lambda2$fthr[ 1 : 2 ],
-                              m, nu2$fthr[ 1 : 2 ], 
-                              maxit$fthr )
+          further_seg <- est( further_model, fthr$delta[ 1 : 2 ], 
+                              fthr$gamma[ 1 : 2 ],
+                              fthr$alpha[ 1 : 2 ], 
+                              fthr$beta[ 1 : 2  ], 
+                              fthr$lambda2[ 1 : 2 ],
+                              m, fthr$nu2[ 1 : 2 ], 
+                              fthr$maxit )
           m <- further_seg$parm[ 2, ]
           sigma2 <- further_seg$parm[ 3, ]
-          if( ( m[ 2 ] - m[ 1 ] ) /  delta$fthr[ 3 ] > 
+          if( ( m[ 2 ] - m[ 1 ] ) /  fthr$delta[ 3 ] > 
               sqrt( min( sigma2 ) ) ) {
             necrosis_idx <- sub_csf_image == 6 &
               further_seg$image == -2
@@ -223,12 +185,12 @@ post <- function( patient, out = "SEG", infolder = "N4ITK433Z",
               m <- further_data$m
               further_model <-initFther( further_data$label, 
                                          further_data$intst )
-              further_seg <- estF( further_model, delta$fthr, gamma$fthr,
-                                   alpha$fthr, beta$fthr, lambda2$fthr,
-                                   m, nu2$fthr, maxit$fthr )
+              further_seg <- estF( further_model, fthr$delta, fthr$gamma,
+                                   fthr$alpha, fthr$beta, fthr$lambda2,
+                                   m, fthr$nu2, fthr$maxit )
               m <- further_seg$parm[ 2, ]
               sigma2 <- further_seg$parm[ 3, ]
-              if( ( m[ 2 ] - m[ 1 ] ) /  delta$fthr[ 4 ] > 
+              if( ( m[ 2 ] - m[ 1 ] ) /  fthr$delta[ 4 ] > 
                   sqrt( min( sigma2 ) ) ) {
                 edema_idx <- sub_edema_image == 2
                 edema_idx[ is.na( edema_idx ) ] <- FALSE

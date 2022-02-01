@@ -9,19 +9,15 @@ segment(
   out = "SEG",
   infolder = "N4ITK433Z",
   delta = list(t1ce = c(-1, 0, 8, 4), flair = c(-0.45, 0, NA_real_, 4), t2 = c(2.65, 0,
-    NA_real_, 4), fthr = c(0, 0, 4, 5)),
+    NA_real_, 4)),
   delta_factor = list(t1ce = 1.75, flair = 2.6, t2 = 4.7),
-  gamma = list(t1ce = 0.8, flair = 0.4, t2 = 0.4, fthr = 0.8),
-  alpha = list(t1ce = c(10, 10, 10, 10), flair = c(10, 10, 10, 10), t2 = c(10, 10, 10),
-    fthr = c(10, 10)),
-  beta = list(t1ce = c(1, 1, 1, 1), flair = c(1, 1, 1, 1), t2 = c(1, 1, 1), fthr = c(1,
-    1)),
-  lambda2 = list(t1ce = c(1, 1, 1, 1), flair = c(1, 1, 1, 1), t2 = c(1, 1, 1), fthr =
-    c(1, 1)),
+  gamma = list(t1ce = 0.8, flair = 0.4, t2 = 0.4),
+  alpha = list(t1ce = c(10, 10, 10, 10), flair = c(10, 10, 10, 10), t2 = c(10, 10, 10)),
+  beta = list(t1ce = c(1, 1, 1, 1), flair = c(1, 1, 1, 1), t2 = c(1, 1, 1)),
+  lambda2 = list(t1ce = c(1, 1, 1, 1), flair = c(1, 1, 1, 1), t2 = c(1, 1, 1)),
   a = 2,
-  nu2 = list(t1ce = rep(0.25, 3), flair = rep(0.25, 3), t2 = c(0.25, 0.25), fthr =
-    rep(0.25, 2)),
-  maxit = list(t1ce = 40L, flair = 40L, t2 = 40L, fthr = 40L),
+  nu2 = list(t1ce = rep(0.25, 3), flair = rep(0.25, 3), t2 = c(0.25, 0.25)),
+  maxit = list(t1ce = 40L, flair = 40L, t2 = 40L),
   redo = TRUE,
   shrink = FALSE
 )
